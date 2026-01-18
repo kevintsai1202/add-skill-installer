@@ -7,41 +7,64 @@
 
 ## ✨ 功能特色
 
-- 🔧 支援多種 Coding Agents（Antigravity、Claude Code、Cursor 等）
+- 🔧 支援多種 Coding Agents
 - 📦 從 GitHub、GitLab 或任何 Git URL 安裝技能
 - 🌐 支援全域安裝或專案級安裝
 - 🎯 可選擇安裝特定技能或全部技能
 
+---
+
 ## 🤖 支援的 Agents
 
-| Agent | 技能目錄 |
-|-------|----------|
-| **Antigravity** | `~/.gemini/antigravity/skills/` |
-| Claude Code | `~/.claude/skills/` |
-| Cursor | `.cursor/skills/` |
-| Codex | `.codex/skills/` |
+| Agent | 識別名稱 | 全域技能目錄 |
+|-------|----------|--------------|
+| **Antigravity** | `antigravity` | `~/.gemini/antigravity/skills/` |
+| **Claude Code** | `claude-code` | `~/.claude/skills/` |
+| **Cursor** | `cursor` | `.cursor/skills/` |
+| **Codex** | `codex` | `.codex/skills/` |
+| **OpenCode** | `opencode` | `.opencode/skills/` |
+| **GitHub Copilot** | `github-copilot` | `.github/copilot/skills/` |
+| **Roo Code** | `roo` | `.roo/skills/` |
 
-## 📥 安裝方式
+---
 
-### 作為全域技能安裝此 Skill
+## 📥 安裝此 Skill
+
+### 全域安裝（推薦）
 
 ```bash
 npx add-skill kevintsai1202/add-skill-installer -g -a antigravity -y
 ```
 
-### 安裝到當前專案
+### 專案級安裝
 
 ```bash
 npx add-skill kevintsai1202/add-skill-installer -a antigravity -y
 ```
 
-## 🔧 使用方式
+---
 
-安裝完成後，只需告訴 Agent：
+## 🔧 CLI 完整用法
 
-> 「幫我安裝 vercel-labs/agent-skills 的技能」
+```
+Usage: add-skill [options] <source>
 
-Agent 會自動觸發此技能並引導你完成安裝流程。
+Install skills onto coding agents (OpenCode, Claude Code, Codex, Cursor, Antigravity, Github Copilot, Roo Code)
+
+Arguments:
+  source                   Git repo URL, GitHub shorthand (owner/repo), or direct path to skill
+
+Options:
+  -V, --version            輸出版本號
+  -g, --global             全域安裝（user-level）而非專案級
+  -a, --agent <agents...>  指定目標 Agent
+  -s, --skill <skills...>  指定要安裝的技能名稱
+  -l, --list               列出儲存庫中可用的技能（不安裝）
+  -y, --yes                跳過確認提示
+  -h, --help               顯示說明
+```
+
+---
 
 ## 📚 來源格式範例
 
@@ -57,32 +80,81 @@ npx add-skill https://github.com/vercel-labs/agent-skills/tree/main/skills/front
 
 # GitLab URL
 npx add-skill https://gitlab.com/org/repo
+
+# SSH Git URL
+npx add-skill git@github.com:vercel-labs/agent-skills.git
 ```
 
-## ⚙️ 常用選項
+---
 
-| 選項 | 說明 |
-|------|------|
-| `-g, --global` | 安裝到全域目錄（跨專案可用） |
-| `-a, --agent <agents...>` | 指定目標 Agent |
-| `-s, --skill <skills...>` | 只安裝特定技能 |
-| `-l, --list` | 列出儲存庫中可用的技能 |
-| `-y, --yes` | 非互動式安裝 |
+## ⚙️ 常用指令範例
+
+### 列出可用技能
+
+```bash
+npx add-skill vercel-labs/agent-skills --list
+```
+
+### 安裝所有技能到 Antigravity（全域）
+
+```bash
+npx add-skill vercel-labs/agent-skills -g -a antigravity -y
+```
+
+### 安裝到多個 Agents
+
+```bash
+npx add-skill vercel-labs/agent-skills -g -a antigravity claude-code cursor -y
+```
+
+### 只安裝特定技能
+
+```bash
+npx add-skill vercel-labs/agent-skills --skill frontend-design -g -a antigravity -y
+```
+
+### 安裝多個特定技能
+
+```bash
+npx add-skill vercel-labs/agent-skills --skill frontend-design nextjs-expert -g -a antigravity -y
+```
+
+### 安裝到當前專案（非全域）
+
+```bash
+npx add-skill vercel-labs/agent-skills -a antigravity -y
+```
+
+### 互動式安裝（會提示選擇）
+
+```bash
+npx add-skill vercel-labs/agent-skills
+```
+
+---
 
 ## 🌟 推薦的技能儲存庫
 
-- **Vercel Labs**: `vercel-labs/agent-skills`
-- **Skills Marketplace**: [skillsmp.com](https://skillsmp.com/)
-- **Agent Skills**: [agentskills.io](https://agentskills.io/)
+| 來源 | 說明 |
+|------|------|
+| `vercel-labs/agent-skills` | Vercel 官方技能集 |
+| [skillsmp.com](https://skillsmp.com/) | Skills Marketplace |
+| [agentskills.io](https://agentskills.io/) | Agent Skills 社群 |
+
+---
 
 ## 📋 前置需求
 
 - Node.js 18+
 - npm 或 pnpm
 
+---
+
 ## 📄 授權
 
 MIT License
+
+---
 
 ## 🤝 貢獻
 
